@@ -1,4 +1,4 @@
-module github.com/terraform-linters/tflint-ruleset-template
+module github.com/heyjobs/heyjobs-tflint-rules
 
 go 1.23
 
