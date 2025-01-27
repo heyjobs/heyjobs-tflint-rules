@@ -29,4 +29,4 @@ jobs:
         args: release --skip=sign
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        ARCHIVE_NAME_TEMPLATE: "heyjobs-tflint-rules_{{ .Os }}_{{ .Arch }}"
+        ARCHIVE_NAME_TEMPLATE: "tflint-ruleset-heyjobs_{{ .Os }}_{{ .Arch }}"

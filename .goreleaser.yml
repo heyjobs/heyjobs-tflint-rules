@@ -18,7 +18,7 @@ builds:
         - mkdir -p ./dist/raw
         - cp "{{ .Path }}" "./dist/raw/{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}"
 archives:
-  - id: zip
+  - id: zip 
     name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}"
     format: zip
     files:
