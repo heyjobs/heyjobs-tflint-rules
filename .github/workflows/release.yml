@@ -35,7 +35,7 @@ jobs:
         args: release
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GPG_FINGERPRINT: ${{ steps.import_gpg.outputs.fingerprint }}
+        GPG_FINGERPRINT: rodrigo.oliveira@heyjobs.de
         ARCHIVE_NAME_TEMPLATE: "tflint-ruleset-heyjobs_{{ .Os }}_{{ .Arch }}"
     - uses: actions/attest-build-provenance@v2
       with:
