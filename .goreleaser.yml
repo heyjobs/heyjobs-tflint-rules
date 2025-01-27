@@ -26,4 +26,8 @@ checksum:
     - glob: ./dist/raw/*
 signs:
   - artifacts: checksum
-    args: ["--batch", "-u", "{{ .Env.GPG_FINGERPRINT }}", "--output", "${signature}", "--detach-sign", "${artifact}"]
+    env:
+      - GPG_FINGERPRINT="{{ .Env.GPG_FINGERPRINT }}"
+    args: ["--output", "${signature}", "${artifact}", "{{ .ProjectName }}"]
+    output: true
+
