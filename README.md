@@ -1,7 +1,6 @@
-# TFLint Ruleset Template
-[![Build Status](https://github.com/terraform-linters/tflint-ruleset-template/workflows/build/badge.svg?branch=main)](https://github.com/terraform-linters/tflint-ruleset-template/actions)
+# HeyJobs TFLint Rules
 
-This is a template repository for building a custom ruleset. You can create a plugin repository from "Use this template". See also [Writing Plugins](https://github.com/terraform-linters/tflint/blob/master/docs/developer-guide/plugins.md).
+Custom TFLint ruleset for HeyJobs' Terraform configurations. This ruleset helps enforce best practices and standards across our infrastructure code.
 
 ## Requirements
 
@@ -10,57 +9,74 @@ This is a template repository for building a custom ruleset. You can create a pl
 
 ## Installation
 
-TODO: This template repository does not contain release binaries, so this installation will not work. Please rewrite for your repository. See the "Building the plugin" section to get this template ruleset working.
-
-You can install the plugin with `tflint --init`. Declare a config in `.tflint.hcl` as follows:
+Add the following configuration to your `.tflint.hcl`:
 
 ```hcl
-plugin "template" {
-  enabled = true
-
-  version = "0.1.0"
-  source  = "github.com/terraform-linters/tflint-ruleset-template"
-
-  signing_key = <<-KEY
-  -----BEGIN PGP PUBLIC KEY BLOCK-----
-  mQINBGCqS2YBEADJ7gHktSV5NgUe08hD/uWWPwY07d5WZ1+F9I9SoiK/mtcNGz4P
-  JLrYAIUTMBvrxk3I+kuwhp7MCk7CD/tRVkPRIklONgtKsp8jCke7FB3PuFlP/ptL
-  SlbaXx53FCZSOzCJo9puZajVWydoGfnZi5apddd11Zw1FuJma3YElHZ1A1D2YvrF
-  ...
-  KEY
+plugin "heyjobs" {
+    enabled = true
+    version = "0.1.0"
+    source  = "github.com/heyjobs/heyjobs-tflint-rules"
 }
 ```
 
-## Rules
+## Available Rules
 
-|Name|Description|Severity|Enabled|Link|
-| --- | --- | --- | --- | --- |
-|aws_instance_example_type|Example rule for accessing and evaluating top-level attributes|ERROR|✔||
-|aws_s3_bucket_example_lifecycle_rule|Example rule for accessing top-level/nested blocks and attributes under the blocks|ERROR|✔||
-|google_compute_ssl_policy|Example rule with a custom rule config|WARNING|✔||
-|terraform_backend_type|Example rule for accessing other than resources|ERROR|✔||
+| Name | Description | Severity | Enabled |
+|------|-------------|----------|---------|
+| aws_instance_example_type | Validates instance types against allowed values | ERROR | ✔ |
+| aws_s3_bucket_example_lifecycle_rule | Ensures S3 buckets have proper lifecycle rules | ERROR | ✔ |
+| terraform_backend_type | Validates backend configuration | ERROR | ✔ |
 
-## Building the plugin
+## Development
 
-Clone the repository locally and run the following command:
+### Building the Plugin
 
-```
-$ make
-```
-
-You can easily install the built plugin with the following:
-
-```
-$ make install
+1. Clone the repository:
+```bash
+git clone git@github.com:heyjobs/heyjobs-tflint-rules.git
 ```
 
-You can run the built plugin like the following:
-
+2. Build the plugin:
+```bash
+make
 ```
-$ cat << EOS > .tflint.hcl
-plugin "template" {
-  enabled = true
+
+3. Install locally:
+```bash
+make install
+```
+
+### Testing
+
+Run the test suite:
+```bash
+make test
+```
+
+### Local Testing
+
+To test the plugin locally:
+
+1. Create a `.tflint.hcl` file:
+```hcl
+plugin "heyjobs" {
+    enabled = true
 }
-EOS
-$ tflint
 ```
+
+2. Run TFLint:
+```bash
+tflint
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
+
+## License
+
+Copyright © 2024 HeyJobs GmbH
