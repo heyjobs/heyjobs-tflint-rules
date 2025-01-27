@@ -27,7 +27,7 @@ checksum:
 signs:
   - artifacts: checksum
     env:
-      - GPG_FINGERPRINT="{{ .Env.GPG_FINGERPRINT }}"
+      - GPG_FINGERPRINT="rodrigo.oliveira@heyjobs.de"
     args: ["--output", "${signature}", "${artifact}", "{{ .ProjectName }}"]
     output: true
 
