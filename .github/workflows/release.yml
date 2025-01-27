@@ -30,3 +30,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         ARCHIVE_NAME_TEMPLATE: "tflint-ruleset-heyjobs_{{ .Os }}_{{ .Arch }}"
+    - uses: actions/attest-build-provenance@v2
+      with:
+        subject-checksums: ./dist/checksums.txt
