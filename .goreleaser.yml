@@ -29,6 +29,6 @@ signs:
     cmd: gpg2
     env:
       - GPG_FINGERPRINT="rodrigo.oliveira@heyjobs.de"
-    args: ["--output", "${signature}", "${artifact}", "{{ .ProjectName }}"]
+    args: ["--batch", "--no-tty", "--yes", "-u", "{{ .Env.GPG_FINGERPRINT }}", "--detach-sign", "${artifact}"]
     output: true
 
