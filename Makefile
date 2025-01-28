@@ -1,4 +1,4 @@
-PLUGIN_NAME = tflint-ruleset-heyjobs
+PLUGIN_NAME = heyjobs-tflint-rules
 VERSION = 0.1.0
 
 TARGETS = \
