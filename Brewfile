@@ -21,3 +21,6 @@ brew "pre-commit"
 
 # mise - Go environment manager
 brew "mise"
+
+# direnv - Environment variable manager
+brew "direnv"

@@ -7,6 +7,41 @@ Custom TFLint ruleset for HeyJobs' Terraform configurations. This ruleset helps 
 - TFLint v0.42+
 - Go v1.23
 
+## Development Setup
+
+### Installing Dependencies
+
+We use Homebrew for managing development dependencies. A `Brewfile` is provided with all necessary tools:
+
+```bash
+# Install Homebrew if you haven't already
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Install all dependencies
+brew bundle
+```
+
+The Brewfile includes:
+- `direnv` - Environment variable manager
+- `go` - Go programming language
+- `tflint` - Terraform linter
+- `git` - Version control
+- `goreleaser` - Release automation tool
+- `make` - Build automation
+- `golangci-lint` - Go linters aggregator
+- `pre-commit` - Git hooks framework
+
+### Environment Setup
+
+The repository includes a `.envrc` file for direnv that sets up the Go environment:
+
+```bash
+# Allow the direnv configuration
+direnv allow
+```
+
+This will automatically set up your Go environment variables when you enter the directory.
+
 ## Installation
 
 Add the following configuration to your `.tflint.hcl`:
@@ -34,14 +69,20 @@ plugin "heyjobs" {
 1. Clone the repository:
 ```bash
 git clone git@github.com:heyjobs/heyjobs-tflint-rules.git
+cd heyjobs-tflint-rules
 ```
 
-2. Build the plugin:
+2. Install dependencies:
+```bash
+brew bundle
+```
+
+3. Build the plugin:
 ```bash
 make
 ```
 
-3. Install locally:
+4. Install locally:
 ```bash
 make install
 ```
@@ -79,4 +120,4 @@ tflint
 
 ## License
 
-Copyright © 2024 HeyJobs GmbH
+Copyright © 2024 HeyJobs GmbH 
