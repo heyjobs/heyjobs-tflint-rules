@@ -5,11 +5,6 @@ project_name: tflint-ruleset-heyjobs
 env:
   - CGO_ENABLED=0
 
-before:
-  hooks:
-    - chmod +x .github/scripts/check_gpg.sh
-    - .github/scripts/check_gpg.sh
-
 release:
   extra_files:
     - glob: .github/keys/key.pub
