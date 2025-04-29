@@ -49,7 +49,7 @@ func (r *AWSResourceInProdRule) Check(runner tflint.Runner) error {
 
 	// List of AWS resource types to check (can be customized)
 	restrictedTypes := []string{
-		"aws_t_", // Any T family instance
+		"aws_t", // Any T family instance (t2, t3, t4g, etc.)
 	}
 
 	for _, block := range content.Blocks {
