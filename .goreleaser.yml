@@ -4,6 +4,16 @@ version: 2
 project_name: tflint-ruleset-heyjobs
 env:
   - CGO_ENABLED=0
+
+before:
+  hooks:
+    - chmod +x .github/scripts/validate-checksum-signature.sh
+    - .github/scripts/validate-checksum-signature.sh
+
+release:
+  extra_files:
+    - glob: .github/keys/key.pub
+
 builds:
   - targets:
       - darwin_amd64
