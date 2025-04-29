@@ -3,9 +3,7 @@ name: release
 on:
   push:
     branches:
-    - '!*'
-    tags:
-    - v*.*.*
+    - 'main'
 
 permissions:
   contents: write
