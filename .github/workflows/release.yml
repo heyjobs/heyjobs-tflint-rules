@@ -9,9 +9,8 @@ jobs:
   release:
     runs-on: ubuntu-latest
     permissions:
-      contents: write    # para goreleaser criar o GitHub Release
-      id-token: write    # só necessário se você usar keyless OIDC
-
+      contents: write   
+      id-token: write   
     steps:
       - name: 📥 Checkout repo
         uses: actions/checkout@v4
@@ -19,7 +18,7 @@ jobs:
       - name: 🛠️ Set up Go
         uses: actions/setup-go@v4
         with:
-          go-version: '1.20'   # ajuste conforme seu projeto
+          go-version: '1.20'
 
       - name: 🔑 Prepare Cosign key
         run: |
