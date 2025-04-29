@@ -24,6 +24,11 @@ jobs:
       - name: Install Cosign
         uses: sigstore/cosign-installer@d7d6bc7722e3daa8354c50bcb52f4837da5e9b6a # v3.8.1
 
+      - name: 🔑 Prepare Cosign key
+        run: |
+          echo "${{ secrets.COSIGN_KEY }}" > cosign.key
+          chmod 400 cosign.key
+
       - name: 🏗️ Build & Release with Goreleaser
         uses: goreleaser/goreleaser-action@v3
         with:
@@ -31,17 +36,5 @@ jobs:
           args: release 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COSIGN_PWD: ${{ secrets.COSIGN_PWD }}
 
-      - name: 🔑 Prepare Cosign key
-        run: |
-          echo "${{ secrets.COSIGN_KEY }}" > cosign.key
-          chmod 400 cosign.key
-
-      - name: ✍️ Sign artifacts with Cosign
-        env:
-          COSIGN_PASSWORD: ${{ secrets.COSIGN_PWD }}
-        run: |
-          for bin in dist/*/*/*; do
-            echo "Signing $bin"
-            cosign sign --key cosign.key "$bin"
-          done
