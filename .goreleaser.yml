@@ -34,6 +34,10 @@ signs:
       - --batch
       - --yes
       - --armor
+      - --pinentry-mode
+      - loopback
+      - --passphrase
+      - "${GPG_PASSWORD}"
       - --detach-sign
       - --output
       - "${signature}"
