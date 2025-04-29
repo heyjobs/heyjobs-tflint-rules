@@ -28,12 +28,15 @@ checksum:
   extra_files:
     - glob: ./dist/raw/*
 signs:
-  - cmd: cosign
-    stdin: "{{ .Env.COSIGN_PWD }}"
+  - id: gpg-sign
+    cmd: gpg
     args:
-      - "sign-blob"
-      - "--key=cosign.key"
-      - "--output-signature=${signature}"
+      - --batch
+      - --yes
+      - --armor
+      - --detach-sign
+      - --output
+      - "${signature}"
       - "${artifact}"
-      - "--yes" # needed on cosign 2.0.0+
-    artifacts: all
+    artifacts:
+      - checksum
