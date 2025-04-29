@@ -7,8 +7,8 @@ env:
 
 before:
   hooks:
-    - chmod +x .github/scripts/validate-checksum-signature.sh
-    - .github/scripts/validate-checksum-signature.sh
+    - chmod +x .github/scripts/check_gpg.sh
+    - .github/scripts/check_gpg.sh
 
 release:
   extra_files:
