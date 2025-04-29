@@ -7,7 +7,7 @@ env:
 
 release:
   extra_files:
-    - glob: .github/keys/key.pub
+    - glob: .github/keys/tflint-ruleset-heyjobs.pub
 
 builds:
   - targets:
@@ -39,4 +39,5 @@ signs:
       - -c
       - |
         echo "$GPG_PASSWORD" | gpg --batch --yes --armor --pinentry-mode loopback --passphrase-fd 0 --detach-sign --output "${signature}" "${artifact}"
-    artifacts: all
+    artifacts: 
+      - checksum
