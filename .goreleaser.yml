@@ -38,5 +38,4 @@ signs:
       - --output
       - "${signature}"
       - "${artifact}"
-    artifacts:
-      - checksum
+    artifacts: all
