@@ -19,6 +19,11 @@ jobs:
         uses: actions/setup-go@v4
         with:
           go-version: '1.22'
+      - name: 🔑 GPG version
+        run: |
+          gpg --version
+        shell: bash
+  
 
       - name: 🔑 Import GPG key
         run: |
