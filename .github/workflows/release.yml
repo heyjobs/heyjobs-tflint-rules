@@ -42,6 +42,5 @@ jobs:
           GPG_PASSWORD: ${{ secrets.GPG_PWD }}
 
       - name: 🔑 GPG check
-          run: |
-            file checksums.txt.sig
-          shell: bash
+        run: file checksums.txt.sig
+        shell: bash
