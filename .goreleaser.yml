@@ -34,8 +34,7 @@ checksum:
     - glob: ./dist/raw/*
 signs:
   - id: gpg-sign
-    cmd: sh
-    args:
-      - -c
-      - 'echo "$GPG_PASSWORD" | gpg --batch --yes --armor --pinentry-mode loopback --passphrase-fd 0 --detach-sign --output "${signature}" "${artifact}"'
+    cmd: gpg
+    stdin: "{{ .Env.GPG_PASSWORD }}"
+    args: ["--output", "${signature}", "${artifact}", "{{ .ProjectName }}"]
     artifacts: checksum
