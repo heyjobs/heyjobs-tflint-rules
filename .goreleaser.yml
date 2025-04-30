@@ -36,5 +36,5 @@ signs:
   - id: gpg-sign
     cmd: gpg
     stdin: "{{ .Env.GPG_PASSWORD }}"
-    args: ["--output", "${signature}", "${artifact}", "{{ .ProjectName }}"]
+    args: ["--detach-sign","--output", "${signature}", "${artifact}", "{{ .ProjectName }}"]
     artifacts: checksum
