@@ -24,13 +24,14 @@ jobs:
         run: |
           gpg --version
         shell: bash
-  
+      
 
       - name: 🔑 Import GPG key
-        run: |
-          echo "${{ secrets.GPG_PRIVATE_KEY }}" | gpg --batch --import
-          echo "pinentry-mode loopback" >> ~/.gnupg/gpg.conf
-        shell: bash
+        id: import_gpg
+        uses: crazy-max/ghaction-import-gpg@e89d40939c28e39f97cf32126055eeae86ba74ec # v6.3.0
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.GPG_PWD }}
 
       - name: 🏗️ Build & Release with Goreleaser
         uses: goreleaser/goreleaser-action@v3
@@ -39,8 +40,8 @@ jobs:
           args: release 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GPG_PASSWORD: ${{ secrets.GPG_PWD }}
+          GPG_FINGERPRINT: ${{ steps.import_gpg.outputs.fingerprint }}
 
-      - name: 🔑 GPG check
-        run: file dist/checksums.txt.sig
-        shell: bash
+      - uses: actions/attest-build-provenance@c074443f1aee8d4aeeae555aebba3282517141b2 # v2.2.3
+        with:
+          subject-path: 'dist/checksums.txt'
