@@ -1,9 +1,9 @@
 package main
 
 import (
+	"github.com/heyjobs/heyjobs-tflint-rules/rules"
 	"github.com/terraform-linters/tflint-plugin-sdk/plugin"
 	"github.com/terraform-linters/tflint-plugin-sdk/tflint"
-	"github.com/heyjobs/heyjobs-tflint-rules/rules"
 )
 
 func main() {
@@ -14,6 +14,7 @@ func main() {
 			Rules: []tflint.Rule{
 				rules.NewTerraformNamingConventionRule(),
 				rules.NewBackendProviderNamingConventionRule(),
+				rules.NewStackTmHclRule(),
 			},
 		},
 	})
