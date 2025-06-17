@@ -67,7 +67,8 @@ func (r *BackendProviderNamingConventionRule) Check(runner tflint.Runner) error 
 				Body: &hclext.BodySchema{
 					Blocks: []hclext.BlockSchema{
 						{
-							Type: "backend",
+							Type:       "backend",
+							LabelNames: []string{"name"},
 						},
 					},
 				},
