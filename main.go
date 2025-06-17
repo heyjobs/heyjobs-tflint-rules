@@ -14,7 +14,6 @@ func main() {
 			Rules: []tflint.Rule{
 				rules.NewTerraformNamingConventionRule(),
 				rules.NewBackendProviderNamingConventionRule(),
-				rules.NewStackTmHclRule(),
 			},
 		},
 	})
