@@ -39,7 +39,8 @@ func (r *BackendProviderNamingConventionRule) Check(runner tflint.Runner) error 
 	providers, err := runner.GetModuleContent(&hclext.BodySchema{
 		Blocks: []hclext.BlockSchema{
 			{
-				Type: "provider",
+				Type:       "provider",
+				LabelNames: []string{"name"},
 			},
 		},
 	}, nil)
@@ -91,4 +92,4 @@ func (r *BackendProviderNamingConventionRule) Check(runner tflint.Runner) error 
 	}
 
 	return nil
-} 
+}
