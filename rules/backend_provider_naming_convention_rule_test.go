@@ -17,7 +17,7 @@ func Test_BackendProviderNamingConventionRule(t *testing.T) {
 			Name: "provider in wrong file",
 			Files: map[string]string{
 				"main.tf": `
-provider {
+provider "aws" {
   region = "us-west-2"
 }`,
 			},
@@ -25,7 +25,7 @@ provider {
 				{
 					Rule:    NewBackendProviderNamingConventionRule(),
 					Message: "Provider configuration found in main.tf. Provider configurations should be in provider.tf",
-					Range:   hcl.Range{Filename: "main.tf", Start: hcl.Pos{Line: 2, Column: 1}, End: hcl.Pos{Line: 2, Column: 9}},
+					Range:   hcl.Range{Filename: "main.tf", Start: hcl.Pos{Line: 2, Column: 1}, End: hcl.Pos{Line: 2, Column: 15}},
 				},
 			},
 		},
@@ -33,7 +33,7 @@ provider {
 			Name: "provider in correct file",
 			Files: map[string]string{
 				"provider.tf": `
-provider {
+provider "aws" {
   region = "us-west-2"
 }`,
 			},
@@ -44,7 +44,7 @@ provider {
 			Files: map[string]string{
 				"main.tf": `
 terraform {
-  backend {
+  backend "s3" {
     bucket = "my-bucket"
   }
 }`,
@@ -62,7 +62,7 @@ terraform {
 			Files: map[string]string{
 				"backend.tf": `
 terraform {
-  backend {
+  backend "s3" {
     bucket = "my-bucket"
   }
 }`,
@@ -73,12 +73,12 @@ terraform {
 			Name: "multiple files with wrong configurations",
 			Files: map[string]string{
 				"infrastructure.tf": `
-provider {
+provider "aws" {
   region = "us-west-2"
 }`,
 				"setup.tf": `
 terraform {
-  backend {
+  backend "s3" {
     bucket = "my-bucket"
   }
 }`,
@@ -87,7 +87,7 @@ terraform {
 				{
 					Rule:    NewBackendProviderNamingConventionRule(),
 					Message: "Provider configuration found in infrastructure.tf. Provider configurations should be in provider.tf",
-					Range:   hcl.Range{Filename: "infrastructure.tf", Start: hcl.Pos{Line: 2, Column: 1}, End: hcl.Pos{Line: 2, Column: 9}},
+					Range:   hcl.Range{Filename: "infrastructure.tf", Start: hcl.Pos{Line: 2, Column: 1}, End: hcl.Pos{Line: 2, Column: 15}},
 				},
 				{
 					Rule:    NewBackendProviderNamingConventionRule(),
