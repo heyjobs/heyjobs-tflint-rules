@@ -2,7 +2,7 @@ module github.com/heyjobs/heyjobs-tflint-rules
 
 go 1.24.0
 
-toolchain go1.25.7
+toolchain go1.26.0
 
 require (
 	github.com/hashicorp/hcl/v2 v2.24.0
