@@ -24,7 +24,13 @@
 #       uses: actions/setup-go@v5
 #       with:
 #         go-version-file: 'go.mod'
+#       env:
+#         GOPROXY: https://go.aikido.io/1d264fa79e543bef3a23,https://proxy.golang.org,direct
 #     - name: Run tests
 #       run: make test
+#       env:
+#         GOPROXY: https://go.aikido.io/1d264fa79e543bef3a23,https://proxy.golang.org,direct
 #     - name: Run build
 #       run: make build
+#       env:
+#         GOPROXY: https://go.aikido.io/1d264fa79e543bef3a23,https://proxy.golang.org,direct

@@ -36,3 +36,5 @@ require (
 	google.golang.org/grpc v1.79.3 // indirect
 	google.golang.org/protobuf v1.36.11 // indirect
 )
+
+replace golang.org/x/net v0.52.0 => golang.org/x/net v0.52.0-aikido.2
