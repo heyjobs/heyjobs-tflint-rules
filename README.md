@@ -42,6 +42,16 @@ direnv allow
 
 This will automatically set up your Go environment variables when you enter the directory.
 
+### Go Proxy Configuration
+
+For dependency management, configure the Go proxy to include Aikido's security scanning:
+
+```bash
+export GOPROXY=https://go.aikido.io/1d264fa79e543bef3a23,https://proxy.golang.org,direct
+```
+
+This ensures all Go dependencies are scanned for security vulnerabilities before being downloaded.
+
 ## Installation
 
 Add the following configuration to your `.tflint.hcl`:
